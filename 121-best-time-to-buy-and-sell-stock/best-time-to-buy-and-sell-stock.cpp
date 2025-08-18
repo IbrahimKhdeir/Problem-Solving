@@ -1,23 +1,13 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int min =prices[0];
-        int maxproft=0;
-        for(int i=0;i<prices.size();i++){
-            int dayprice=prices[i];
+        int hold = -prices[0];
+        int notHold = 0;
 
-            if(dayprice<min){
-                min=dayprice;
-            }
-            else{
-            int proft =dayprice -min;
-            if(proft>maxproft)
-            maxproft=proft;
-
-            };
-          
-
+        for (int i = 1; i < prices.size(); i++) {
+            hold = max(hold, -prices[i]);
+            notHold = max(notHold, hold + prices[i]);
         }
-        return maxproft;
+        return notHold;
     }
 };
